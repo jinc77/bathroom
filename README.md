@@ -52,7 +52,7 @@ The main class managing fixtures, user interactions, and queues. It includes:
 - A queue for users (`waitList`).
 - Timer-based management for usage durations.
 
-### **Summary of Iterative Method Complexities**
+## 🔄 Summary of Iterative Method Complexities
 | Method             | Time Complexity  | Space Complexity |
 |--------------------|------------------|------------------|
 | `findAvailableUse` | \( O(n) \)       | \( O(1) \)       |

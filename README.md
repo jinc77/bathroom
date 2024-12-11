@@ -3,7 +3,7 @@
 This Java application simulates the management of bathroom facilities with stalls and urinals. It assigns users to available bathroom fixtures, maintains a queue for occupied fixtures (stalls/urinals), and tracks usage times for a wait time prediction.
 
 ## ⭐ Features
-- Handles up to 10 stalls and 3 urinals by default.
+- Handles up to 10 stalls and 3 urinals (men's restroom) by default.
 - Assigns users to available bathroom fixtures based on usage count.
 - Manages a queue for users waiting to use the bathroom.
 - Tracks estimated wait times for queued users.
@@ -63,11 +63,11 @@ The main class managing fixtures, user interactions, and queues. It includes:
 
 ## 💾 Example
 ### Sample User Interaction
-1. Enter your name: `Alice`
+1. Enter your name: `John`
 2. Choose your usage type: `1` (urinal)
-- Output: `Alice directed to Urinal 1 for ~2 minutes.`
+- Output: `John directed to Urinal 1 for ~2 minutes.`
 3. If all fixtures are occupied:
-- Output: `All fixtures are occupied. Alice has been added to the wait list.`
+- Output: `All fixtures are occupied. John has been added to the wait list.`
 
 ## 🧠 License
 This project is licensed under the MIT License. See the LICENSE file for details.

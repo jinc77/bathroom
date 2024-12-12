@@ -98,7 +98,7 @@ public class BathroomApp {
                         useBathroom(nextUser.getName(), nextUser.getUsageType());
                     }
                 }
-            }, usageTime * 60 * 1000L); // Convert minutes to milliseconds
+            }, usageTime * 60 * 1000L); 
         } else {
             addUser(new User(name, usageType, usageTime));
         }

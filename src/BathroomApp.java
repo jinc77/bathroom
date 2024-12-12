@@ -12,19 +12,29 @@ public class BathroomApp {
         waitList = new LinkedList();
         timers = new HashMap<>();
 
-        for(int i = 1; i<= stalls; i++){
-            fixtures.put("Stall" + i, new Stall ("Stall " + i));
-        }
         for(int i = 1; i<= urinals; i++){
             fixtures.put("Urinals " + i, new Urinal ("Urinal " + i));
         }
+
+        for(int i = 1; i<= stalls; i++){
+            fixtures.put("Stall" + i, new Stall ("Stall " + i));
+        }
     }
 
-    private Bathroom findAvailableUse(){
+    private Bathroom findAvailableUse(int usageType){
+        if(usageType == 2){
         return fixtures.values().stream()
+        .filter(f ->!f.isOccupied())
+        .filter(f -> f.getId().contains("Stall"))
+        .min(Comparator.comparingInt(Bathroom::getUsageCount))
+        .orElse(null);
+        }
+        else{
+            return fixtures.values().stream()
         .filter(f ->!f.isOccupied())
         .min(Comparator.comparingInt(Bathroom::getUsageCount))
         .orElse(null);
+        }
 
     }
     
@@ -80,7 +90,7 @@ public class BathroomApp {
             }
         }
         
-        Bathroom availableFixture = findAvailableUse();
+        Bathroom availableFixture = findAvailableUse(usageType);
         if (availableFixture != null) {
             System.out.println(name + " directed to " + availableFixture.getId() + " for ~" + usageTime + " minutes.");
             availableFixture.use(name);

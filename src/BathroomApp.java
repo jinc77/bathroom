@@ -158,26 +158,49 @@ public class BathroomApp {
      * main method
      * prints the beginning page
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         BathroomApp app = new BathroomApp();
         Scanner scanner = new Scanner(System.in);
-        int usageType = 1;
-        String name = "";
         System.out.println("Welcome to Jin's Bathroom App!");
-        while(true){
+
+        while (true) {
             System.out.print("Enter your name: ");
-            name = scanner.nextLine();
+            String name = scanner.nextLine();
+
+            // Check if the name is already in use in any fixture
+            boolean wasInUse = false;
+            for (Bathroom fixture : app.fixtures.values()) {
+                if (name.equals(fixture.getCurrentUser())) {
+                    System.out.println(name + " is currently using " + fixture.getId() + ". Signing them out.");
+                    fixture.vacate();
+                    app.timers.get(name).cancel();
+                    app.timers.remove(name);
+                    wasInUse = true;
+
+                    // Auto-assign the next person in queue, if any
+                    if (!app.waitList.isEmpty()) {
+                        User nextUser = app.waitList.poll();
+                        System.out.println("Assigning " + nextUser.getName() + " to " + fixture.getId());
+                        app.useBathroom(nextUser.getName(), nextUser.getUsageType());
+                    }
+                    break; // Exit the loop after signing out the user
+                }
+            }
+
+            // If the name was already in use, skip asking for usage type and continue
+            if (wasInUse) {
+                app.displayStatus();
+                continue;
+            }
+
+            // Ask for usage type only if the name was not already in use
             System.out.print("Enter 1 to pee, 2 to poo, or 3 for other purposes: ");
-            usageType = scanner.nextInt();
-            scanner.nextLine();
+            int usageType = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
 
             app.useBathroom(name, usageType);
-            
         }
-
     }
-
-    
 
     }
 

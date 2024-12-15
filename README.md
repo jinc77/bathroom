@@ -33,7 +33,7 @@ java BathroomApp
 ## 💻 How It Works
 - **User Input**: Enter your name and select your usage type (1 for urinals, 2 for stalls, 3 for other purposes).
 - **Fixture Assignment**: The app directs you to an available fixture or adds you to the queue if all are occupied.
-- **Timer Management**: Each user's usage is timed, and fixtures are vacated automatically when the timer ends.
+- **Timer Management**: Each user's usage is timed for queue time predictions, and fixtures are vacated when users check out.
 - **Status Display**: The app continuously updates the status of all fixtures and the queue.
 
 ## 🌟 Key Components
@@ -68,13 +68,3 @@ The main class managing fixtures, user interactions, and queues. It includes:
 - Output: `John directed to Urinal 1 for ~2 minutes.`
 3. If all fixtures are occupied:
 - Output: `All fixtures are occupied. John has been added to the wait list.`
-
-## 🧠 License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## 📝 Contributing
-Feel free to submit issues or pull requests! Contributions are welcome.
-
-## ❤️ Acknowledgements
-- Inspired by practical bathroom queue management challenges.
-- Utilizes Java `Timer` and `Queue` classes for scheduling and queue management.
